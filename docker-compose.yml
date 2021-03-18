@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  test-admon:
+    build: .
+    ports:
+      - 3000:3000
+    depends_on:
+      - clickhouse
+      - redis
+    environment: 
+      - CH_HOST=clickhouse
+      - REDIS_HOST=redis
+
+  clickhouse:
+    image: yandex/clickhouse-server
+    ulimits: 
+      nofile:
+        soft: 262144
+        hard: 262144
+
+  redis:
+    image: redis:6-alpine

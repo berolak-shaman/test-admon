@@ -1,0 +1,7 @@
+version: "3.7"
+
+services:
+  test-admon:
+    command: "npm run start:dev"
+    volumes: 
+      - ./:/app

@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "strict": true
+  },
+  "include": [
+    "tsconfig.json",
+    ".eslintrc.js",
+    "src/**/*.ts",
+    "test/**/*.ts"
+    // etc
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
