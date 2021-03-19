@@ -1,13 +1,30 @@
 version: "3.7"
 
 services:
-  test-admon:
-    build: .
+  gateway:
+    build: ./gateway
     ports:
       - 3000:3000
     depends_on:
       - clickhouse
       - redis
+    environment: 
+      - REDIS_HOST=redis
+
+  dispatcher:
+    build: ./dispatcher
+    depends_on:
+      - clickhouse
+      - redis
+    environment: 
+      - REDIS_HOST=redis
+
+  clickhouse_worker:
+    build: ./clickhouse_worker
+    depends_on:
+      - clickhouse
+      - redis
+      - dispatcher
     environment: 
       - CH_HOST=clickhouse
       - REDIS_HOST=redis

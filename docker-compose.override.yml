@@ -1,7 +1,23 @@
 version: "3.7"
 
 services:
-  test-admon:
+  gateway:
     command: "npm run start:dev"
     volumes: 
-      - ./:/app
+      - ./gateway:/app
+    env_file: 
+      - develop.env
+
+  dispatcher:
+    command: "npm run start:dev"
+    volumes: 
+      - ./dispatcher:/app
+    env_file: 
+      - develop.env
+
+  clickhouse_worker:
+    command: "npm run start:dev"
+    volumes: 
+      - ./clickhouse_worker:/app
+    env_file: 
+      - develop.env
